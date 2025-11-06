@@ -18,5 +18,5 @@ AI 时代工程师常用快捷工具脚本，一键设置，每天使用。
 ### 可选：配置 Git 用户信息
 ```
 git config --global user.email "9830131@qq.com"
-git config --global user.name "李艺"
+git config --global user.name "LIYI"
 ```
