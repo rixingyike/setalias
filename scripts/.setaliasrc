@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+alias fetch="$HOME/.fetch.sh"
+alias new="$HOME/.new.sh"
+alias open_typora="$HOME/.open_typora.sh"
+alias post="$HOME/.post.sh"
+alias push="$HOME/.push.sh"
+alias pull="$HOME/.pull.sh"
