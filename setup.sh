@@ -121,6 +121,22 @@ link_scripts_into_home() {
   safe_link_or_copy "$SCRIPTS_DIR/.push.sh" "$HOME/.push.sh"
 }
 
+maybe_reload_profile() {
+  local profile_file="$1"
+  # Attempt to reload profile and aliases for immediate availability.
+  # Note: this affects only the current shell process; if setup.sh is executed
+  # as a standalone script, your parent shell won't inherit these changes.
+  # For immediate effect in the current shell, run: source ./setup.sh
+  if [[ -f "$profile_file" ]]; then
+    # shellcheck disable=SC1090
+    . "$profile_file" || true
+  fi
+  if [[ -f "$ALIASES_FILE" ]]; then
+    # shellcheck disable=SC1090
+    . "$ALIASES_FILE" || true
+  fi
+}
+
 main() {
   printf "\n[setalias] Starting setup...\n"
   write_aliases_rc
@@ -128,6 +144,7 @@ main() {
   local profile
   profile=$(detect_profile_file)
   inject_source_line "$profile"
+  maybe_reload_profile "$profile"
 
   printf "[setalias] Configured project root: %s\n" "$PROJECT_ROOT"
   printf "[setalias] Aliases rc file: %s\n" "$ALIASES_FILE"
