@@ -56,5 +56,5 @@ EOF
 # 输出成功信息
 printf "\n文件已创建：%s\n\n" "$NEW_FILE"
 
-# 使用同目录下的 .open_typora.sh 脚本打开文件（处理跨平台）
-"$HOME/.open_typora.sh" "$NEW_FILE"
+# 使用同目录下的 .open.sh 脚本打开文件（处理跨平台）
+"$HOME/.open.sh" "$NEW_FILE"

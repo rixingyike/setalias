@@ -4,7 +4,7 @@ set -euo pipefail
 # 跨平台打开 Typora
 # 支持：macOS、Linux、Windows (Git Bash/MSYS2/Cygwin)、WSL
 
-open_typora() {
+otypora() {
   local file="${1:-}"
 
   # WSL 检测（Linux 内核但运行在 Windows）
@@ -83,4 +83,4 @@ open_typora() {
   esac
 }
 
-open_typora "$@"
+otypora "$@"

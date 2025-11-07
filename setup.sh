@@ -49,6 +49,8 @@ safe_link_or_copy() {
   local src="$1" dst="$2"
   # Always copy to $HOME to avoid symlink issues across platforms
   cp -f "$src" "$dst"
+  # Ensure executable permission so aliases can invoke scripts directly
+  chmod +x "$dst" 2>/dev/null || true
 }
 
 detect_profile_file() {
@@ -93,10 +95,11 @@ write_aliases_rc() {
 # Aliases
 alias fetch="$HOME/.fetch.sh"
 alias new="$HOME/.new.sh"
-alias open_typora="$HOME/.open_typora.sh"
+alias open="$HOME/.open.sh"
 alias post="$HOME/.post.sh"
 alias push="$HOME/.push.sh"
 alias pull="$HOME/.pull.sh"
+alias loginwifi="$HOME/.loginwifi.sh"
 EOF
   fi
 }
@@ -115,10 +118,11 @@ inject_source_line() {
 link_scripts_into_home() {
   safe_link_or_copy "$SCRIPTS_DIR/.fetch.sh" "$HOME/.fetch.sh"
   safe_link_or_copy "$SCRIPTS_DIR/.new.sh" "$HOME/.new.sh"
-  safe_link_or_copy "$SCRIPTS_DIR/.open_typora.sh" "$HOME/.open_typora.sh"
+  safe_link_or_copy "$SCRIPTS_DIR/.open.sh" "$HOME/.open.sh"
   safe_link_or_copy "$SCRIPTS_DIR/.post.sh" "$HOME/.post.sh"
   safe_link_or_copy "$SCRIPTS_DIR/.pull.sh" "$HOME/.pull.sh"
   safe_link_or_copy "$SCRIPTS_DIR/.push.sh" "$HOME/.push.sh"
+  safe_link_or_copy "$SCRIPTS_DIR/.loginwifi.sh" "$HOME/.loginwifi.sh"
 }
 
 maybe_reload_profile() {
@@ -150,7 +154,7 @@ main() {
   printf "[setalias] Aliases rc file: %s\n" "$ALIASES_FILE"
   printf "[setalias] Shell profile updated: %s\n" "$profile"
   printf "[setalias] Scripts linked under: %s\n\n" "$HOME"
-  printf "Usage:\n  new \"标题\"\n  post\n  fetch\n  push \"commit message\"\n  pull\n  open_typora /path/to/file.md\n\n"
+  printf "Usage:\n  new \"标题\"\n  post\n  fetch\n  push \"commit message\"\n  pull\n  open /path/to/file.md\n  loginwifi [card] [password]\n\n"
 }
 
 main "$@"

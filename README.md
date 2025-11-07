@@ -13,7 +13,8 @@ AI 时代工程师常用快捷工具脚本，一键设置，每天使用。
 - `fetch` 拉取远端更新（带分支检测与安全策略）
 - `push "commit message"` 推送当前分支（无暂存更改时跳过 commit）
 - `pull` 仅快进拉取（`--ff-only`）
-- `open_typora /path/to/file.md` 跨平台打开 Typora
+- `open /path/to/file.md` 跨平台打开 Typora
+- `loginwifi [card] [password]` 进行通州区图书馆读者卡 WiFi 认证
 
 ### 可选：配置 Git 用户信息
 ```
